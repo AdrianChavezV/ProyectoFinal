@@ -23,10 +23,9 @@ public class Musica {
 	public String nombre;
 
     @Column(name = "artista", nullable = false)
-    public String director;
+    public String artista;
 
-    @Column(name = "genero", nullable = false)
-    public String genero;
+
 
     @ManyToOne
     @JoinColumn(name = "album")

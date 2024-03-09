@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            padding-top: 76px; /* Ajuste para la barra de navegación fija */
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #ddd; /* Tonalidad gris para la barra de navegación */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            margin-right: 20px;
+        }
+
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-info {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .dashboard-buttons a{
+			margin:20px
+		}
+
+        .dashboard-button {
+            width: 48%;
+            padding-top: 24%; /* Ancho y altura reducidos a la mitad */
+            text-align: left;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 40px; /* Texto más grande */
+            transition: box-shadow 0.3s; /* Agrega transición al relieve */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px; /* Añade espacio alrededor del contenido del botón */
+        }
+
+        .dashboard-button img {
+            width: 25%; /* Imagen que se ajusta al tamaño del botón */
+            margin-bottom: 10px;
+        }
+
+        .dashboard-button-yellow {
+            background-color: #FCC414; /* Amarillo */
+        }
+
+        .dashboard-button-orange {
+            background-color: #fd7e14; /* Naranja */
+        }
+        
+        .dashboard-button-blue {
+            background-color: #2268C2; /* Azul */
+        }
+
+        .dashboard-button:hover {
+        	color: #000000;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Relieve hacia adentro al poner el mouse sobre el botón */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"></a>
+            <p class="navbar-text">Bienvenido, usuario</p>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="welcome-message">
+            <h1>Bienvenido al Dashboard de Tiendas Fenton</h1>
+        </div>
+        <div class="dashboard-info">
+            <p>Aquí podrás acceder a todos los servicios que ofrecen nuestras tiendas.</p>
+        </div>
+        <div class="dashboard-buttons">
+            <a href="/pelicula/peliculas" class="dashboard-button dashboard-button-yellow">
+                Películas
+            </a>
+            <a href="/musica/musicas" class="dashboard-button dashboard-button-orange">
+                Música
+            </a>
+            
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

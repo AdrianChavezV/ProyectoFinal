@@ -33,25 +33,24 @@ public class MusicaController {
 
         model.addAttribute("musis", listMusicas);
 
-        return "listMusicas";
+        return "listMusica";
     }
 
-    @GetMapping("/register_musica")
+    @GetMapping("/register")
     public String register(Model model) {
         List<Album> albums = albumService.getAllAlbunes();
-        model.addAttribute("albumes", albums);
+        model.addAttribute("albums", albums);
 
-        return "musicaRegister";
+        return "registerMusica";
     }
 
-    @PostMapping("/register_musica")
-    public String createMusica(@RequestParam("name") String nombre, @RequestParam("direct") String director,
-            @RequestParam("Genero") String genero, @RequestParam("id") Long id,Model model) {
+    @PostMapping("/register")
+    public String createMusica(@RequestParam("name") String nombre, @RequestParam("artista") String artista,
+           @RequestParam("id") Long id,Model model) {
 
         Musica musica = new Musica();
         musica.nombre = nombre;
-        musica.director = director;
-        musica.genero = genero;
+        musica.artista = artista;
 
         Album album = albumService.getAlbumById(id);
 
@@ -62,10 +61,10 @@ public class MusicaController {
         model.addAttribute("musis", musicaService.getAllMusicas());
         model.addAttribute("albums", albumService.getAllAlbunes());
 
-        return "listMusicas";
+        return "listMusica";
     }
 
-    @GetMapping("/edit_musica/{id}")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
 
         Musica musica = musicaService.getMusicaById(id);
@@ -73,18 +72,16 @@ public class MusicaController {
         model.addAttribute("musis", musica);
         model.addAttribute("albums", albumService.getAllAlbunes());
 
-        return "musicaEdit";
+        return "editMusica";
     }
 
-    @PostMapping("/edit_musica")
-    public String updateMusica(@RequestParam("name") String nombre, @RequestParam("artist") String artista,
-            @RequestParam("Genero") String genero, @RequestParam("id") Long id, @RequestParam("album") String albumName,
-            Model model) {
+    @PostMapping("/edit")
+    public String updateMusica(@RequestParam("name") String nombre, @RequestParam("artista") String artista,
+            @RequestParam("id") Long id,Model model) {
 
-        Musica musica = new Musica();
+        Musica musica = musicaService.getMusicaById(id);
         musica.nombre = nombre;
-        musica.director = artista;
-        musica.genero = genero;
+        musica.artista = artista;
 
         Album album = albumService.getAlbumById(id);
 
@@ -95,16 +92,16 @@ public class MusicaController {
         model.addAttribute("musis", musicaService.getAllMusicas());
         model.addAttribute("albums", albumService.getAllAlbunes());
 
-        return "listMusicas";
+        return "listMusica";
     }
 
-    @GetMapping("/delete_musica/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteMusica(@PathVariable Long id, Model model) {
         musicaService.deleteMusica(id);
 
         model.addAttribute("musis", musicaService.getAllMusicas());
         model.addAttribute("albums", albumService.getAllAlbunes());
 
-        return "listMusicas";
+        return "listMusica";
     }
 }

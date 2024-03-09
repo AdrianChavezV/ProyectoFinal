@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import java.util.List; 
+import java.util.List;  
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.Genero;
+
 import com.example.demo.model.Pelicula;
-import com.example.demo.service.GeneroService;
+
 import com.example.demo.service.PeliculaService;
 
 @Controller
 @RequestMapping("/pelicula")
 public class PeliculaController {
 	
-	@Autowired
-	private GeneroService generoService;
+
 	
 	@Autowired
 	private PeliculaService peliculaService;
@@ -37,16 +36,16 @@ public class PeliculaController {
 		return "listPeliculas";
 	}
 	
-	@GetMapping("/register_pelicula")
+	@GetMapping("/register")
 	public String Register(Model model) {
-		List<Genero> generos = generoService.getAllGeneros();
-	    model.addAttribute("generos", generos);
+		List<Pelicula> listPeli = peliculaService.getAllPeliculas();
+	    model.addAttribute("pelis", listPeli);
 		
-		return "peliculaRegister";
+		return "registerPelicula";
 	}
 	
-	@PostMapping("/register_pelicula")
-	public String createPelicula(@RequestParam("name") String nombre, @RequestParam("director") String director,@RequestParam("fechaEstreno") String fechaEstreno,@RequestParam("id") Long id, Model model) {
+	@PostMapping("/register")
+	public String createPelicula(@RequestParam("name") String nombre, @RequestParam("director") String director,@RequestParam("fechaEstreno") String fechaEstreno, Model model) {
 		
 		
 		
@@ -55,32 +54,29 @@ public class PeliculaController {
 		pelicula.director=director;
 		pelicula.fechaEstreno= fechaEstreno;
 		
-		Genero genero = generoService.getGeneroById(id);
-		
-		pelicula.genero=genero;
-		
+
 		
 		peliculaService.createPelicula(pelicula);
 		
 		model.addAttribute("pelis", peliculaService.getAllPeliculas());
-		model.addAttribute("generos", generoService.getAllGeneros());
+
 		
 		return "listPeliculas";
 	}
 	
 	
-	@GetMapping("/edit_pelicula/{id}")
+	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		
 		Pelicula pelicula = peliculaService.getPeliculaById(id);
 		
 		model.addAttribute("pelis", pelicula);
-		model.addAttribute("generos", generoService.getAllGeneros());
+
 		
 		return "peliculaEdit";
 	}
 	
-	@PostMapping("/edit_pelicula")
+	@PostMapping("/edit")
 	public String createPelicula1(@RequestParam("name") String nombre, @RequestParam("director") String director,@RequestParam("fechaEstreno") String fechaEstreno,@RequestParam("id") Long id, Model model) {
 		
 		
@@ -90,25 +86,23 @@ public class PeliculaController {
 		pelicula.director=director;
 		pelicula.fechaEstreno= fechaEstreno;
 		
-		Genero genero = generoService.getGeneroById(id);
-		
-		pelicula.genero=genero;
+
 		
 		
 		peliculaService.createPelicula(pelicula);
 		
 		model.addAttribute("pelis", peliculaService.getAllPeliculas());
-		model.addAttribute("generos", generoService.getAllGeneros());
+
 		
 		return "listPeliculas";
 	}
 	
-	@GetMapping("/delete_pelicula/{id}")
+	@GetMapping("/delete/{id}")
 	public String deleteUser(@PathVariable Long id, Model model) {
 		peliculaService.deletePelicula(id);
 		
 		model.addAttribute("pelis", peliculaService.getAllPeliculas());
-		model.addAttribute("generos", generoService.getAllGeneros());
+
 		
 		return "listPeliculas";
 	}

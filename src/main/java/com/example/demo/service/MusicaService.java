@@ -9,6 +9,7 @@ import com.example.demo.model.Musica;
 
 import com.example.demo.repository.MusicaRepository;
 
+@Service
 public class MusicaService {
 	
 	@Autowired

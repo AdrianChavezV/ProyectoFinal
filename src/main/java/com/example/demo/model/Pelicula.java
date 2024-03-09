@@ -28,8 +28,6 @@ public class Pelicula {
     @Column(name = "fechaEstreno", nullable = false)
     public String fechaEstreno;
 
-    @ManyToOne
-    @JoinColumn(name = "idGenero")
-    public Genero genero;
+    
     
 }
